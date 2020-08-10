@@ -1,0 +1,11 @@
+{
+  "name": "lauriecheck",
+  "version": "0.0.1",
+  "description": "property based testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Laurence Newman",
+  "license": "ISC"
+}
