@@ -9,6 +9,12 @@ export const natural = (n: number) => ({
   next: () => natural(n + 1)
 })
 
+export const randomNat = (n: number) => ({
+  value: Math.random() ? Math.round(n * 10 * Math.random()) : Math.round(Math.random() * Math.random() * n),
+  next: () => randomNat(n + 1)
+})
+
+
 export const assert = <A>(name: string, input: iterableIsh<A>[], test: (_: A[]) => boolean, iterations?: number) => (): string => {
   const _iterations = iterations || 100
   const doTest = (n: number, a: iterableIsh<A>[]): string => {
@@ -28,20 +34,20 @@ export const test = (name: string, ...assertion: assertion[]) => {
   console.log(`'${name}':`)
   results.forEach((a) => {
     if (a.match(' succeeded, for ')) {
-      console.log("\x1b[31m", a)
-    } else {
       console.log("\x1b[32m", a)
+    } else {
+      console.log("\x1b[31m", a)
     }
   })
   console.log("\x1b[30m", `${results.length} tests ran, ${positive.length} succeeded and ${negative.length} failed.`)
   negative.forEach((a) => {
-    console.log("\x1b[32m", a)
+    console.log("\x1b[31m", a)
   })
   console.log("\x1b[30m")
 }
 
 export const genArray = (n: number): number[] => {
-   if (n < 0) return []
+   if (n < 1) return []
    return [n, ...genArray(n - 1)]
 }
 
